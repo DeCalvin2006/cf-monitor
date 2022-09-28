@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import Head from 'next/head'
-import List from "../components/List";
-import ListItem, { ItemInfo } from "../components/ListItem";
+import List from "../../components/cf/List";
+import ListItem, { ItemInfo } from "../../components/cf/ListItem";
 import { get } from "https";
 import { useRouter } from 'next/router'
 import { info } from "console";
+import { Container } from "react-bootstrap"
 let cnt: number = 0;
 let userlist: string[] = [];
 let lst: number[] = Array<number>(100);
@@ -37,7 +38,6 @@ export default function Monitor () {
 
   const router = useRouter();
   const user = router.query["user"] == undefined ? "W_RB" : router.query["user"];
-  console.log(user);
 
 
   const [listItemInfo, setListItemInfo] = useState(Array<ItemInfo>);
@@ -59,7 +59,8 @@ export default function Monitor () {
 
   return (
 
-    <div className='container-fluid'>
+    <Container>
+
       <Head>
         <title>
           Codeforces Monitor
@@ -67,6 +68,6 @@ export default function Monitor () {
       </Head>
 
       <List items={listItemInfo}></List>
-    </div >
+    </Container >
   )
 }

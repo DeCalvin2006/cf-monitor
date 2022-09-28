@@ -16,7 +16,7 @@ export interface ItemInfo {
     rating?: number;
   };
 }
-function getColor (rating) {
+function getColor (rating: number) {
   if (rating == undefined) {
     return "black!important";
   }
@@ -43,24 +43,25 @@ function getColor (rating) {
 export default function ListItem (props: { item: ItemInfo }) {
   const item = props.item;
   const [ratingStr, setRating] = useState("UNRATED");
-  const [color, setColor] = useState("black");
+  const [color, setColor] = useState(getColor(item.problem.rating));
 
   useEffect(() => {
     if (item.problem.rating) {
       setRating(item.problem.rating.toString());
       setColor(getColor(item.problem.rating));
+      console.log(getColor(item.problem.rating));
     }
   }, [item.problem.rating]);
   return (
     <tr>
       <td>{item.userName}</td>
-      <td style={{ color: getColor(item.problem.rating) }}>
+      <td>
         <Link href={`https://codeforces.com/contest/${item.problem.contestId}/problem/${item.problem.index}`}>
           {item.problem.name}
         </Link>
       </td>
-      <td>
-        {item.problem.rating ? `Rating:${item.problem.rating}` : "UNRATED"}
+      <td style={{ color: color }}>
+        {ratingStr}
       </td>
       <td>
         {JSON.stringify(item.problem.tags)}
