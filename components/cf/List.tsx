@@ -9,11 +9,11 @@ export default function List (props: { items: ItemInfo[] }) {
     <thead>
       <tr>
         <th>User Name</th>
+        <th>Problem ID</th>
         <th>Problem Name</th>
         <th>Rating</th>
         <th>Tags</th>
         <th>Time</th>
-        <th>Status</th>
       </tr>
     </thead>
     <tbody>
